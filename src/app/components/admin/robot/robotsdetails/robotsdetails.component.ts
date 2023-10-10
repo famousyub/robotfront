@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { Robot } from 'src/app/models/robot';
 import { ExcutionerviceService } from 'src/app/services/excutionervice.service';
@@ -48,6 +48,7 @@ export class RobotsdetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private robotService: RobotserviceService,private planserv : PlanificationerviceService, 
     
     private excut : ExcutionerviceService,
+    private router : Router,
     
     private http: HttpClient) {
 
@@ -98,6 +99,12 @@ export class RobotsdetailsComponent implements OnInit {
 
 
        console.table(res);
+
+  
+
+       this.router.navigate(['robots']);
+
+
 
     })
  }

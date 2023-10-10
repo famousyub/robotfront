@@ -33,7 +33,7 @@ export class ListrobotComponent implements OnInit {
 
   productList: any;
   dataSource: MatTableDataSource<Robots> = new MatTableDataSource();
-  displayedColumns: string[] = ['id',"nom", 'description', 'emplacement','action'];
+  displayedColumns: string[] = ['id',"nom", 'description', 'emplacement','excution','planification','user','action'];
 
   selectedProduct: Robots=new Robots(); 
   errorMessage: string;
