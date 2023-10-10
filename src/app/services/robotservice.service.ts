@@ -32,6 +32,16 @@ export class RobotserviceService {
 
   }
 
+  updateRobot(id:number , robot : Robots){
+
+    return  this.http.post(this.roboturl+"/robotss/" + id ,robot,{
+      headers: this.headers
+    });
+
+
+     
+  }
+
   affectation(robotTd:number, planID:number, ExcutID:number){
 
      return this.http.put(this.roboturl,{});

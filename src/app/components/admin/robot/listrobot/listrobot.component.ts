@@ -21,6 +21,8 @@ export class ListrobotComponent implements OnInit {
     this.findAllProducts();
   }
 
+  id:number ;
+
   allrobots(){
     this.robotService.getAllrobots().subscribe(robots => {
       this.robots = robots;
@@ -66,7 +68,12 @@ export class ListrobotComponent implements OnInit {
   }
 
   editProductRequest(product: Robot){
+   
+    this.id= product.id;
+    alert(this.id);
+    console.table(this.id);
     this.selectedProduct = new Robots();
+
     $('#productModal').modal('show');
   }
 
@@ -90,12 +97,19 @@ export class ListrobotComponent implements OnInit {
   }
 
   updateProduct(){
-    this.adminService.createRobot(this.selectedProduct).subscribe(data => {
+
+
+
+    alert(this.id);
+    console.table(this.id);
+    this.selectedProduct.id = this.id ;
+    this.adminService.updateRobot(this.id,this.selectedProduct).subscribe(data => {
       let itemIndex = this.productList.findIndex(item => item.id == this.selectedProduct.id);
       this.productList[itemIndex] = this.selectedProduct;
       this.dataSource = new MatTableDataSource(this.productList);
       this.infoMessage = "Mission is completed";
       $('#productModal').modal('hide');
+      window.location.reload();
     },err => {
       this.errorMessage = "Unexpected error occurred.";
     });
