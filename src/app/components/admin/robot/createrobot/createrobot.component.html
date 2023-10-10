@@ -1,0 +1,14 @@
+<!-- robot-add.component.html -->
+
+<h2>Add Robot</h2>
+<form #form="ngForm" (ngSubmit)="addRobot(form.value.description, form.value.emplacement)">
+  <div>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" ngModel required>
+  </div>
+  <div>
+    <label for="emplacement">Emplacement:</label>
+    <input type="text" id="emplacement" name="emplacement" ngModel required>
+  </div>
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,90 @@
+<!-- robot-detail.component.html -->
+
+
+
+
+
+
+<div class="container">
+  <div>
+    <div>
+  
+    </div>
+  </div>
+  <div *ngIf="robot" class="jumbotron">
+    <h2>{{ robot.description }}</h2>
+    <p>Emplacement: {{ robot.emplacement }}</p>
+  </div>   
+
+
+
+
+    <table>
+         <caption>excution</caption>
+         <th> id </th>
+         <th> </th>
+         <th>affcteid</th>
+ 
+
+   <tr *ngFor="let exc of excution ">
+        <td>
+           {{exc.id}}
+
+        </td>
+         <td>
+                  {{exc.log}}
+         </td>
+         <td>
+          <button (click)="choiceexcu(exc.id)" class="btn btn-secondary">
+            affectexcu
+          </button>
+         </td>
+   </tr>
+
+    </table>
+     
+    <table>
+      <caption>planification</caption>
+      <th> id </th>
+      <th> status</th>
+      <th>affcteid</th>
+
+<tr *ngFor="let exc of planification ">
+     <td>
+        {{exc.id}}
+
+     </td>
+      <td>
+               {{exc.status}}
+      </td>
+      <td>
+       <button (click)="choice(exc.id)" class="btn btn-secondary">
+         affectplanifcation   
+       </button>
+      </td>
+</tr>
+</table>
+
+
+<div *ngIf="plnId >0">
+
+  {{plnId}}
+
+</div>
+
+<div *ngIf="excuId>0">
+    {{excuId}}
+</div> 
+
+  <button (click) ="affectation()" class="btn btn-primary"  *ngIf="excuId>0  && plnId > 0 ">
+    affectation   
+     
+</button>
+</div>
+
+
+
+
+
+
+

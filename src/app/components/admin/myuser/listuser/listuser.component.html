@@ -1,0 +1,219 @@
+<!-- robot-list.component.html -->
+
+
+
+
+<div class="container custom-container">
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    <strong>Error!</strong> {{errorMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-success" *ngIf="infoMessage">
+    <strong>Successful!</strong> {{infoMessage}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div *ngIf="dataSource">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col col-xs-6">
+            <h3 class="panel-title">All Users</h3>
+          </div>
+          <div class="col col-xs-6 text-right">
+            <button type="button" class="btn btn-primary" (click)="createNewProductRequest()">Create New users</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>user Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>username </th>
+            <td mat-cell *matCellDef="let element">{{element.username}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>name </th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>email </th>
+            <td mat-cell *matCellDef="let element">{{element.email}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="password">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>password </th>
+            <td mat-cell *matCellDef="let element">{{element.password}}</td>
+          </ng-container>
+
+    
+         
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+            <td mat-cell *matCellDef="let element" style="width:140px;">
+              <a class="btn btn-warning custom-btn-link" (click)="editProductRequest(element)"><em class="glyphicon glyphicon-pencil"></em></a>
+              <a class="btn btn-danger custom-btn-link" (click)="deleteProductRequest(element)"><em class="glyphicon glyphicon-trash"></em></a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="productModal" #productModal tabIndex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form name="form-product-update" (ngSubmit)="f.form.valid && saveProduct()" #f="ngForm" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">users Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <strong>Error!</strong> {{errorMessage}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="name">username </label>
+            <input type="text" class="form-control input-text-custom" id="username" name="username" [(ngModel)]="selectedProduct.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">username  is required.</div>
+          </div>
+
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+            <label for="name">name </label>
+            <input type="text" class="form-control input-text-custom" id="name" name="name" [(ngModel)]="selectedProduct.name" #name="ngModel" required />
+            <div *ngIf="f.submitted && !name.valid" class="help-block">name  is required.</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="name">email </label>
+            <input type="text" class="form-control input-text-custom" id="email" name="email" [(ngModel)]="selectedProduct.email" #email="ngModel" required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">email is required.</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="emplacement">password</label>
+            <input type="password" class="form-control input-text-custom" id="password" name="password" [(ngModel)]="selectedProduct.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">password is required.</div>
+          </div>
+ 
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" #deleteModal tabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          Are you sure to delete <strong>{{selectedProduct.name}}</strong>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteProduct()">I'm sure.</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<ul class="container custom-container badge">
+  <li *ngFor="let robot of robots" class="jumbotron">
+    {{ robot.email }} - {{ robot.username }}
+    <button (click)="findusersroobts(robot.id)">seeeuserrobot {{robot.id}}</button>
+  </li>
+</ul>
+
+
+<table class="table container custom-container badge">
+   <thead>
+       <th>id</th>
+       <th>username</th>
+       <th> email</th>
+       <th>admin</th>
+       <th>robots</th>
+   </thead> 
+
+      
+
+   <tbody>
+
+    <tr *ngIf="users">
+      <td>
+        {{users.id}}
+      </td>
+      <td>
+        {{users.username}}
+      </td>
+      <td>
+        {{users.email}}
+      </td>
+      <td >
+        {{users.admin}}
+      </td>
+              
+
+         <table>
+              <th> id </th>
+              <th> description</th>
+              <th> emplacement</th>
+
+              <tr *ngFor="let  robot of users.robots">
+                <td>
+                  {{robot.id}}
+                </td>
+                  <td>
+                    {{robot.description}}
+                  </td>
+
+                  <td>
+                    {{robot.emplacement}}
+                  </td>
+
+              </tr>
+         </table>
+
+           
+    </tr>
+
+   </tbody>
+ </table>

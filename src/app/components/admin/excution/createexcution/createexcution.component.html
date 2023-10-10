@@ -1,0 +1,15 @@
+<!-- planification-add.component.html -->
+
+<h2>Add excute</h2>
+<input type="datetime" class="form-control" />
+<form #form="ngForm" (ngSubmit)="addPlanification(form.value.status)">
+  <div class="row justify-content-end">
+    <div class="form-group">
+    <label for="status">log:</label>
+    <input type="text" id="log" class="form-control" placeholder="log here ..." name="log" ngModel required>
+  </div>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+
