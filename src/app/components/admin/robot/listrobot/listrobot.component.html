@@ -34,7 +34,11 @@
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Id</th>
-            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            <td mat-cell *matCellDef="let element">
+              <a routerLink="/robots/{{element.id}}">
+                {{element.id}}
+              </a>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="description">
