@@ -89,7 +89,9 @@ export class RobotsdetailsComponent implements OnInit {
 
  affectation(){
 
-    this.http.put(environment.URL_BACKEND +"/robotss/" +  this.robId + "/" + this.excuId +"/" + this.plnId,{},
+  console.log(this.robId);
+
+    this.http.put(environment.URL_BACKEND +"/robotss/" +  this.robId + "/" + this.plnId +"/" + this.excuId,{},
     
     
      {headers:this.headers}).subscribe(res=>{
