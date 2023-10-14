@@ -11,7 +11,7 @@ export class ListexcutionComponent implements OnInit {
 
   transactionList: any;
   dataSource: MatTableDataSource<Excution> = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'log', 'date'];
+  displayedColumns: string[] = ['id', 'log','logger', 'date'];
   reservations:any;
   users_id:number;
 

@@ -21,3 +21,98 @@ table {
     width: 120px;
   }
   
+
+  
+
+
+.title {
+  font-weight: bold;
+  font-size: 19px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.title.title1 h2 {
+  color: #2ecc71;
+}
+
+.title.title2 {
+  color: #e74c3c;
+}
+
+.btn-place button {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 60px;
+  color: white;
+  font-family: Poppins;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.btn-place.btn1 button {
+  background: #27ae60;
+  transition: all 0.5s ease;
+}
+
+.btn-place.btn2 button {
+  background: #e74c3c;
+  transition: all 0.5s ease;
+}
+
+.btn-place.btn2 button:hover {
+  background: #c0392b;
+}
+
+.btn-place.btn1 button:hover {
+  background: #10ac84;
+}
+
+.icon-place {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translatey(-60px);
+  border-radius: 50%;
+  color: white;
+  left: calc(50% - 50px);
+}
+
+.icon-place.icon1::before {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2ecc71;
+  font-size: 50px;
+}
+
+.icon-place.icon1 {
+  border: 3px solid #2ecc71;
+  background: #ecf0f1;
+}
+
+.icon-place.icon2 {
+  border: 3px solid #e74c3c;
+  background: #ecf0f1;
+}
+
+.icon-place.icon2::before {
+  content: "×";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: #e74c3c;
+}
+
+::selection{
+  background: rgba(241, 196, 15, 0.5);
+  opacity: 50%;
+}

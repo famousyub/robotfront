@@ -11,6 +11,9 @@ import {User} from "../../../model/user";
 export class AdminTemplateComponent implements OnInit {
   currentUser: User;
 
+
+  curisAdmin : boolean =false ;
+
   constructor(private userService: UserService, private router: Router) {
     this.userService.currentUser.subscribe(data => {
       this.currentUser = data;
@@ -18,12 +21,23 @@ export class AdminTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if(Number(localStorage.getItem("admin")) == 1) {
+
+      this.curisAdmin = true ;
+
+    }
   }
 
   logOut(){
-    this.userService.logOut().subscribe(data => {
+
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("admin");
+   
       this.router.navigate(['/login']);
-    });
+
+      window.location.reload();
+  
   }
 
 }

@@ -34,6 +34,9 @@ import { PlayerIndex } from '@angular/core/src/render3/interfaces/player';
 import { PlanificationModule } from './components/admin/planification/planification.module';
 import { ExcutionModule } from './components/admin/excution/excution.module';
 import { MyuserModule } from './components/admin/myuser/myuser.module';
+import { AddexcutiontComponent } from './components/admin/addexcutiont/addexcutiont.component';
+import { ExcutiotdetailsComponent } from './components/admin/excutiotdetails/excutiotdetails.component';
+import { ExcutiontlistComponent } from './components/admin/excutiontlist/excutiontlist.component';
 
 
 @NgModule({
@@ -52,7 +55,10 @@ import { MyuserModule } from './components/admin/myuser/myuser.module';
     NotFoundComponent,
     UnathorizedComponent,
     TransactionListComponent,
-    RobotsComponent
+    RobotsComponent,
+    AddexcutiontComponent,
+    ExcutiotdetailsComponent,
+    ExcutiontlistComponent
   ],
   imports: [
     BrowserModule,

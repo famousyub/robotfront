@@ -14,11 +14,13 @@ export class AppComponent{
   title = 'client-product-management';
   currentUser: User;
   admin : boolean = false;
+  userlogin : boolean =true ;
   isAdminPanel: boolean = false;
   d_user  :any ;
   constructor(private userService: UserService, private router: Router, private userchekc :AdminuserService ){
     this.userService.currentUser.subscribe(data => {
       this.currentUser = data;
+      this.userlogin = true ;
       this.userChanged();
     });
 

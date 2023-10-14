@@ -10,12 +10,13 @@ import { User } from 'src/app/model/user';
 export class AdminuserService {
 
   constructor(private http: HttpClient) { 
-
+  if(localStorage.getItem("currentUser")){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.headers = new HttpHeaders({
         authorization:'Bearer ' + this.currentUser.accessToken,
         "Content-Type":"application/json; charset=UTF-8"
       });
+    }
   }
 
     url_admino = environment.URL_BACKEND;

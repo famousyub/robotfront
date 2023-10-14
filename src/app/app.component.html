@@ -1,3 +1,13 @@
-<app-admin-template *ngIf="!isAdminPanel"></app-admin-template>
-<app-user-template *ngIf="isAdminPanel" ></app-user-template>
+
+<div *ngIf="userlogin">
+    
+    <app-admin-template *ngIf="!isAdminPanel"></app-admin-template>
+    <app-user-template *ngIf="isAdminPanel" ></app-user-template>
+    <div >
+       
+    </div>
+</div>
+
+
+
 <router-outlet></router-outlet>

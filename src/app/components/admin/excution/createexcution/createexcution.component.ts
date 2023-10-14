@@ -13,10 +13,14 @@ export class CreateexcutionComponent implements OnInit {
   constructor(private router: Router, private planificationService: ExcutionerviceService) {}
 
 
+   log : string  ="" ;
+
   addPlanification(log: string) {
     const newPlanification = { log } as Excution;
     this.planificationService.createExcution(newPlanification).subscribe(() => {
+      console.log(log);
       this.router.navigate(['/planification']);
+   
       window.location.reload();
     });
   }

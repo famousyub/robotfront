@@ -19,7 +19,7 @@
   </div>
 </nav>
 
-<nav class="navbar custom-vertical-nav navbar-dark bg-dark nav-pills nav-fill">
+<nav class="navbar custom-vertical-nav navbar-dark bg-dark nav-pills nav-fill" *ngIf="currentUser">
   <ul class="navbar-nav custom-navbar-nav">
     <li class="nav-item">
       <a class="navbar-brand" href="#">
@@ -37,33 +37,45 @@
         <span>Dashboard</span>
       </a>
     </li>
-    <li class="nav-item" [class.active]="router.url==='/user-list'">
+    <li class="nav-item" [class.active]="router.url==='/user-list'" *ngIf="curisAdmin">
       <a href="/user-list" class="nav-link">
         <span class="glyphicon glyphicon-user"></span>
         <span>User List</span>
       </a>
     </li>
+    <li class="nav-item" [class.active]="router.url==='/user-list'" >
+      <a href="/robot-excution" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span>
+        <span>robot-excution</span>
+      </a>
+    </li>
+    <li class="nav-item" [class.active]="router.url==='/add-excution'" >
+      <a href="/add-excution" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span>
+        <span>add-excution</span>
+      </a>
+    </li>
 
-    <li class="nav-item" [class.active]="router.url==='/user-list'">
+    <li class="nav-item" [class.active]="router.url==='/user-action'" *ngIf="curisAdmin">
       <a href="/user-action" class="nav-link">
         <span class="glyphicon glyphicon-user"></span>
         <span>Users</span>
       </a>
     </li>
-    <li class="nav-item" [class.active]="router.url==='/product-list'">
+    <li class="nav-item" [class.active]="router.url==='/robots'">
       <a href="/robots" class="nav-link">
         <span class="glyphicon glyphicon-th-large"></span>
         <span>robot List</span>
       </a>
     </li>
-    <li class="nav-item" [class.active]="router.url==='/transaction-list'">
+    <li class="nav-item" [class.active]="router.url==='/planification'">
       <a href="/planification" class="nav-link">
         <span class="glyphicon glyphicon-usd"></span>
         <span>planification</span>
       </a>
     </li>
 
-    <li class="nav-item" [class.active]="router.url==='/transaction-list'">
+    <li class="nav-item" [class.active]="router.url==='/excution'">
       <a href="/excution" class="nav-link">
         <span class="glyphicon glyphicon-usd"></span>
         <span>excution </span>

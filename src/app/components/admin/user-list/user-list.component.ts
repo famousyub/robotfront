@@ -14,7 +14,7 @@ declare var $: any;
 export class UserListComponent implements OnInit {
   userList: Array<User>;
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'name', 'username', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'username', 'email', 'password', 'action'];
   selectedUser: User = new User();
   errorMessage: string;
   infoMessage: string;
@@ -63,7 +63,7 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(){
-    this.adminService.updateUser(this.selectedUser).subscribe(data => {
+    this.adminService.updateUser(this.selectedUser,this.selectedUser.id).subscribe(data => {
       let itemIndex = this.userList.findIndex(item => item.id == this.selectedUser.id);
       this.userList[itemIndex] = this.selectedUser;
       this.dataSource = new MatTableDataSource(this.userList);

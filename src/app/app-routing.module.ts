@@ -17,6 +17,8 @@ import { ListrobotComponent } from './components/admin/robot/listrobot/listrobot
 import { ListplanificationComponent } from './components/admin/planification/listplanification/listplanification.component';
 import { ListexcutionComponent } from './components/admin/excution/listexcution/listexcution.component';
 import { ListuserComponent } from './components/admin/myuser/listuser/listuser.component';
+import { AddexcutiontComponent } from './components/admin/addexcutiont/addexcutiont.component';
+import { ExcutiotdetailsComponent } from './components/admin/excutiotdetails/excutiotdetails.component';
 
 const routes: Routes = [
   //Main page
@@ -31,6 +33,14 @@ const routes: Routes = [
   },
   {
     path: 'rebots'  ,  component: ListrobotComponent , canActivate:[AuthGuard]
+  },
+
+  {
+    path: 'robot-excution'  ,  component:ExcutiotdetailsComponent , canActivate:[AuthGuard]
+  },
+
+  {
+    path: 'add-excution'  ,  component:AddexcutiontComponent , canActivate:[AuthGuard]
   },
   ///user-action
 
