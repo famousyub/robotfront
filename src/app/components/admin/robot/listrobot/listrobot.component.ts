@@ -13,23 +13,50 @@ declare var $: any;
 })
 export class ListrobotComponent implements OnInit {
 
-  robots: any;
+  robots: Robot[];
+  robotst: any[] ;
   constructor(private robotService:RobotserviceService,private adminService: RobotserviceService ) { }
 
   ngOnInit() {
     this.allrobots();
     this.findAllProducts();
+    this.checkadmin();
   }
 
   id:number ;
+  myuser : boolean =false;
 
   allrobots(){
-    this.robotService.getAllrobots().subscribe(robots => {
-      this.robots = robots;
+    this.robotService.getAllrobots().subscribe((robots:any[]) => {
+      this.robotst = robots;
+     const   user_id  = Number(localStorage.getItem("user_id"));
+
+     console.log(user_id);
+     console.log(this.myuser);
+      if(this.myuser==true){
+
+          this.robotst.forEach(element => {
+           
+            console.log(element);
+            if(element.user === user_id ){
+         
+               this.robots.push(element);
+
+            }
+            
+          });
+      }
+
+     
     });
   }
 
 
+  checkadmin(){
+    if(Number(localStorage.getItem("admin")) !=1 ){
+      this.myuser = true;
+    }
+  }
 
   productList: any;
   dataSource: MatTableDataSource<Robots> = new MatTableDataSource();

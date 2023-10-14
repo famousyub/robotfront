@@ -17,9 +17,11 @@ export class AppComponent{
   userlogin : boolean =true ;
   isAdminPanel: boolean = false;
   d_user  :any ;
+  id:number ;
   constructor(private userService: UserService, private router: Router, private userchekc :AdminuserService ){
     this.userService.currentUser.subscribe(data => {
       this.currentUser = data;
+    
       this.userlogin = true ;
       this.userChanged();
     });
@@ -34,6 +36,8 @@ export class AppComponent{
 
        console.table(res);
        this.d_user = res ;
+      this.id =  this.d_user.id ;
+        localStorage.setItem("user_id",this.id.toString());
 
        this.admin = this.d_user.iadmin;
        this.admin == true ?     localStorage.setItem("admin" , JSON.stringify(1))  :   localStorage.setItem("admin" ,JSON.stringify(0));
